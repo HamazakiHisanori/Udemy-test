@@ -14,9 +14,22 @@ const onClickAdd = () => {
   p.innerText = inputText;
 
   //button生成
+  const completeButton = document.createElement("button");
+  completeButton.innerText = "完了";
+  completeButton.addEventListener("click", () => {
+    alert("A");
+  });
+
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "削除";
+  deleteButton.addEventListener("click", () => {
+    alert("B");
+  });
 
   //list生成
   li.appendChild(p);
+  li.appendChild(completeButton);
+  li.appendChild(deleteButton);
 
   //未完了リストに追加
   document.getElementById("incomplete-list").appendChild(li);
