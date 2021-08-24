@@ -4,14 +4,18 @@ const onClickAdd = () => {
   //要素取得
   const inputText = document.getElementById("add-text").value;
   document.getElementById("add-text").value = "";
+  createIncompleteList(inputText);
+};
 
+//未完了にリストを追加する関数
+const createIncompleteList = (text) => {
   //li生成
   const li = document.createElement("li");
   li.className = "list";
 
   //p作成
   const p = document.createElement("p");
-  p.innerText = inputText;
+  p.innerText = text;
 
   //button生成
   const completeButton = document.createElement("button");
@@ -35,6 +39,16 @@ const onClickAdd = () => {
     //buttton生成
     const backButton = document.createElement("button");
     backButton.innerText = "戻す";
+    backButton.addEventListener("click", () => {
+      //戻す機能
+      //完了リストから削除
+      const deleteTarget = backButton.parentNode;
+      document.getElementById("complete-list").removeChild(deleteTarget);
+
+      //戻すリスト作成
+      const text = backButton.parentNode.firstElementChild.innerText;
+      createIncompleteList(text);
+    });
 
     //list生成
     addTarget.appendChild(p);
